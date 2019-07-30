@@ -1,0 +1,47 @@
+{
+  "variables": {},
+  "builders": [
+    {
+      "type": "arm-image",
+      "iso_url": "file://Armbian_5.91_Orangepizeroplus2-h5_Debian_buster_next_4.19.59.img",
+      "iso_checksum_type": "sha256",
+      "iso_checksum": "0b8ba0c74b98bc4f84fc861c57fb43fda3d64593350ee22884a387e5a5742738",
+      "target_image_size": 4294967296,
+      "image_mounts": [
+        "/"
+      ]
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "file",
+      "source": "provision/blacklist-rtlsdr.conf",
+      "destination": "/etc/modprobe.d/blacklist-rtlsdr.conf",
+      "direction": "upload"
+    },
+    {
+      "destination": "./armbian_first_run.txt.template",
+      "source": "/boot/armbian_first_run.txt.template",
+      "type": "file",
+      "direction": "download"
+    },
+    {
+      "type": "shell-local",
+      "command": "sed -f provision/wifi-fr.sed <armbian_first_run.txt.template > armbian_first_run.txt"
+    },
+    {
+      "source": "./armbian_first_run.txt",
+      "destination": "/boot/armbian_first_run.txt",
+      "type": "file",
+      "generated": true,
+      "direction": "upload"
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "provision/prepare-build.sh",
+        "provision/build-from-src.sh"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+s/^overlays=.*$/overlays=uart1 uart2 uart3 usbhost0 usbhost1 usbhost2 usbhost3/

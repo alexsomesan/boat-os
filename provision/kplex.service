@@ -1,0 +1,11 @@
+[Unit]
+Description=KPlex
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=10
+ExecStart=/usr/bin/kplex -d 9
+
+[Install]
+WantedBy=multi-user.target

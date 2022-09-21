@@ -1,0 +1,11 @@
+[Unit]
+Description=Reload wifi modules
+After=networking.service
+Requires=networking.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/sh -c "modprobe -r r8712u && modprobe r8712u"
+
+[Install]
+WantedBy=multi-user.target

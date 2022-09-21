@@ -1,0 +1,14 @@
+[Unit]
+Description=SignalK
+After=network.target
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=10
+User=signalk
+WorkingDirectory=/home/signalk
+ExecStart=/usr/bin/signalk-server
+
+[Install]
+WantedBy=multi-user.target

@@ -1,6 +1,3 @@
-Armbian*.img
-armbian_first_run.txt
-armbian_first_run.txt.template
-armbianEnv.txt
-armbianEnv.txt.template
+*.img*
+tmp
 output-arm-image/
